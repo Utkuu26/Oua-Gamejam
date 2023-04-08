@@ -36,12 +36,12 @@ public class PlayerController : MonoBehaviour
         }
        
 
-        if (Input.GetAxis("Vertical") >= 0)
-        {
+        
+        
             Vector3 newPosition = new Vector3(newX, transform.position.y, transform.position.z + runningSpeed * Time.deltaTime);
              transform.position = newPosition;
 
-        }
+        
         
        
 
