@@ -10,12 +10,14 @@ public class CameraController : MonoBehaviour
     private float yRotation = 0f;
     public Transform cameraTransform;
     public Camera computerCamera;
+    public GameObject canvas;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         transform.rotation = Quaternion.Euler(Vector3.zero);
         computerCamera.gameObject.SetActive(false);
+        canvas.SetActive(false);
     }
 
     void Update()
