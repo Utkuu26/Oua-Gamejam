@@ -11,9 +11,13 @@ public class CollectCoin : MonoBehaviour
     public TextMeshProUGUI CoinText;
     public PlayerController PlayerController;
     public Slider görevDurumu;
+    public Animator PlayerAnim;
+    public GameObject Player;
+    public Transform _playerTransform;
 
     private void Start()
     {
+        PlayerAnim = Player.GetComponentInChildren<Animator>();
         
     }
 
@@ -27,17 +31,22 @@ public class CollectCoin : MonoBehaviour
         }
         else if (other.CompareTag("End"))
         {
-            Debug.Log("congrats");
+            
             PlayerController.runningSpeed = 0;
+            transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
 
-            if (score > 5)
+            if (görevDurumu.value == 100)
             {
                 Debug.Log("you win");
+                PlayerAnim.SetBool("win", true);
+                
+                
             }
             else
             {
 
                 Debug.Log("You lose");
+                PlayerAnim.SetBool("lose", true);
             }
         }
     }
