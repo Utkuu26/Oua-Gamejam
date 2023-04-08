@@ -6,8 +6,9 @@ public class ComputerScreenCamera : MonoBehaviour
 {
     public Camera mainCamera;
     public Camera computerCamera;
-    public Vector3 targetPosition = new Vector3(12.15f, 4f, 2.11f);
+    public Vector3 targetPosition = new Vector3(12.15f, 4f, 2.11f);  //-1.66
     public float moveSpeed = 0.7f;
+    public GameObject canvasObject;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -15,6 +16,7 @@ public class ComputerScreenCamera : MonoBehaviour
         {
             computerCamera.gameObject.SetActive(true);
             mainCamera.gameObject.SetActive(false);
+            canvasObject.gameObject.SetActive(false);
         }
     }
 
@@ -30,5 +32,9 @@ public class ComputerScreenCamera : MonoBehaviour
 
         float step = moveSpeed * Time.deltaTime;
         computerCamera.transform.position = Vector3.MoveTowards(computerCamera.transform.position, targetPosition, step);
+        if (computerCamera.transform.position == targetPosition)
+        {
+            canvasObject.SetActive(true);
+        }
     }
 }

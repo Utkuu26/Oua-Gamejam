@@ -10,6 +10,7 @@ public class CameraController : MonoBehaviour
     private float yRotation = 0f;
     public Transform cameraTransform;
     public Camera computerCamera;
+    public GameObject canvasObject;
 
     void Start()
     {
