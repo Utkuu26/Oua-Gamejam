@@ -11,6 +11,7 @@ public class CameraController : MonoBehaviour
     public Transform cameraTransform;
     public Camera computerCamera;
     public GameObject canvas;
+    public AudioSource walkSfx;
 
     void Start()
     {
@@ -36,5 +37,6 @@ public class CameraController : MonoBehaviour
         Vector3 moveDirection = cameraTransform.transform.forward * zMovement + cameraTransform.transform.right * xMovement;
         moveDirection.y = 0f;
         transform.position += moveDirection;
+        walkSfx.Play();
     }
 }

@@ -9,6 +9,7 @@ public class ComputerScreenCamera : MonoBehaviour
     public Vector3 targetPosition = new Vector3(12.15f, 4f, 2.11f);
     public float moveSpeed = 0.7f;
     public GameObject canvasObject;
+    public AudioSource computerSfx;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -36,6 +37,7 @@ public class ComputerScreenCamera : MonoBehaviour
         if (computerCamera.transform.position == targetPosition)
         {
             canvasObject.SetActive(true);
+            computerSfx.Play();
         }
     }
 }
