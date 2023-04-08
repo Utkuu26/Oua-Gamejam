@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
- 
+    
     public float runningSpeed;
     float touchXDelta = 0;
     float newX = 0;
@@ -13,13 +14,14 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-
+        
     }
 
 
     void Update()
     {
         SwipeCheck();
+        
     }
     private void SwipeCheck()
     {
@@ -27,15 +29,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetAxis("Horizontal") != 0)
         {
             //Debug.Log(Input.GetAxis("Horizontal"));
-            touchXDelta = Input.GetAxis("Horizontal") / (Screen.width * 10);
             newX = transform.position.x + XSpeed * touchXDelta + Time.deltaTime;
             newX = Mathf.Clamp(newX, -limitx, limitx);
+            touchXDelta = Input.GetAxis("Horizontal") / (Screen.width * 10);
+            
         }
+       
 
+        if (Input.GetAxis("Vertical") >= 0)
+        {
+            Vector3 newPosition = new Vector3(newX, transform.position.y, transform.position.z + runningSpeed * Time.deltaTime);
+             transform.position = newPosition;
+
+        }
+        
        
 
 
-        Vector3 newPosition = new Vector3(newX, transform.position.y, transform.position.z + runningSpeed * Time.deltaTime);
-        transform.position = newPosition;
+        
     }
 }
