@@ -21,13 +21,11 @@ public class BeatScroller : MonoBehaviour
             {
                 hasStarted = true;
             }
-            else
-            {
-                foreach (RectTransform arrowImage in arrowImages)
-                {
-                    arrowImage.anchoredPosition -= new Vector2(0f, beatTempo * Time.deltaTime * 10f);
-                }
-            }
+        }
+    
+        foreach (RectTransform arrowImage in arrowImages)
+        {
+            arrowImage.anchoredPosition -= new Vector2(0f, beatTempo * Time.deltaTime * 100f);
         }
     }
 }
