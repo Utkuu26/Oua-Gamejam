@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SceneManager : MonoBehaviour
-{
+{ /*
     public void LoadSceneHyper()
     {
         SceneManager.LoadScene("Scene1");
@@ -24,4 +24,5 @@ public class SceneManager : MonoBehaviour
     {
         SceneManager.LoadScene("Scene4");
     }
+    */
 }
