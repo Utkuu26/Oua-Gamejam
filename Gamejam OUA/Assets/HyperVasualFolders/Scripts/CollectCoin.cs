@@ -15,7 +15,13 @@ public class CollectCoin : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Collison"))
+        {
+            Debug.Log("Deðdi");
+        }
+    }
     public void AddCoin()
     {
         score++;

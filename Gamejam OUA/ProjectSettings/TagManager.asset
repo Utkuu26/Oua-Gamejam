@@ -6,6 +6,7 @@ TagManager:
   tags:
   - SwitchCamObject
   - Coin
+  - Collison
   layers:
   - Default
   - TransparentFX
