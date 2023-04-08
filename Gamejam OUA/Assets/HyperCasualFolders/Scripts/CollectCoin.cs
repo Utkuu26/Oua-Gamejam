@@ -9,16 +9,23 @@ public class CollectCoin : MonoBehaviour
 {
     public int score;
     public TextMeshProUGUI CoinText;
+    public TextMeshProUGUI UnityText;
+    public TextMeshProUGUI GirisimcilikText;
+    public TextMeshProUGUI ProjeText;
+    public TextMeshProUGUI EnglishText;
     public PlayerController PlayerController;
     public Slider görevDurumu;
     public Animator PlayerAnim;
     public GameObject Player;
     public Transform _playerTransform;
+    public AudioSource winMusic;
+    public AudioSource coinSound;
 
     private void Start()
     {
         PlayerAnim = Player.GetComponentInChildren<Animator>();
-        
+        winMusic = GetComponent<AudioSource>();
+        coinSound = GetComponent<AudioSource>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -27,6 +34,7 @@ public class CollectCoin : MonoBehaviour
         {
             AddCoin();
             Destroy(other.gameObject);
+            other.GetComponent<AudioSource>().Play();
             
         }
         else if (other.CompareTag("End"))
@@ -34,19 +42,39 @@ public class CollectCoin : MonoBehaviour
             
             PlayerController.runningSpeed = 0;
             transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
+            
 
-            if (görevDurumu.value == 100)
+            if (görevDurumu.value <= 100)
             {
                 Debug.Log("you win");
                 PlayerAnim.SetBool("win", true);
+
                 
-                
+                UnityText.text = "Unity Görevleri: " + "Tamamlandi";
+                UnityText.color = Color.green;
+                GirisimcilikText.text = "Girisimcilik Egitimleri: " + "Tamamlandi";
+                GirisimcilikText.color = Color.green;
+                ProjeText.text = "Proje Yönetimi: " + "Tamamlandi";
+                ProjeText.color = Color.green;
+                EnglishText.text = "Ingilizce Egitimleri: " + "Tamamlandi";
+                EnglishText.color = Color.green;
+                winMusic.Play();
+
+
             }
             else
             {
-
+                
                 Debug.Log("You lose");
                 PlayerAnim.SetBool("lose", true);
+                UnityText.text = "Unity Görevleri: " + "Tamamlandi";
+                UnityText.color = Color.green;
+                GirisimcilikText.text = "Girisimcilik Egitimleri: " + "Tamamlanmadi";
+                GirisimcilikText.color = Color.red;
+                ProjeText.text = "Proje Yönetimi: " + "Tamamlanmadi";
+                ProjeText.color = Color.red;
+                EnglishText.text = "Ingilizce Egitimleri: " + "Tamamlandi";
+                EnglishText.color = Color.green;
             }
         }
     }
@@ -59,11 +87,17 @@ public class CollectCoin : MonoBehaviour
         }
     }
     public void AddCoin()
-    {
-        score++;
+    {   
+        if (score <100)
+        {
+            score++;
+        }
+        
         CoinText.text = "Aylýk Görev:" + "%" + score.ToString();
-        görevDurumu.value += 2f;
+        görevDurumu.value = score;
         Debug.Log(görevDurumu.value);
 
     }
+    
+
 }
