@@ -29,7 +29,7 @@ public class tasi : MonoBehaviour
         baslangic_pozisyonu = transform.position;
 
         kututag_dizisi = GameObject.FindGameObjectsWithTag("kututag");
-        yonet = GameObject.Find("yonetici").GetComponent<yonetici>();
+       yonet = GameObject.Find("yonetici").GetComponent<yonetici>();
 
     }
 
