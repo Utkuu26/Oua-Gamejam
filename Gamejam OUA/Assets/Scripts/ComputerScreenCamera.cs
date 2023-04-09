@@ -43,15 +43,5 @@ public class ComputerScreenCamera : MonoBehaviour
         }
     }
 
-    public void LoadSceneRyhtm()
-    {
-        SceneManager.LoadScene(0);
-    }
-
-    public void LoadSceneHyperCasual()
-    {
-        SceneManager.LoadScene(2);
-    }
-
 
 }
