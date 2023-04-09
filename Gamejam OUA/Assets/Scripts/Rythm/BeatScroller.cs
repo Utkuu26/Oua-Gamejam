@@ -1,13 +1,15 @@
-using System.Collections;
+using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class BeatScroller : MonoBehaviour
 {
     public float beatTempo;
     public bool hasStarted;
     public List<RectTransform> arrowImages; 
+    public AudioSource[] audioSources;
+    private int currentIndex = 0;
+    
 
     void Start()
     {
@@ -26,11 +28,29 @@ public class BeatScroller : MonoBehaviour
     
         foreach (RectTransform arrowImage in arrowImages)
         {
-            if (Input.GetMouseButtonDown(0) && RectTransformUtility.RectangleContainsScreenPoint(arrowImage, Input.mousePosition))
-            {
-                arrowImage.gameObject.SetActive(false);
-            }
-            arrowImage.anchoredPosition -= new Vector2(0f, beatTempo * Time.deltaTime * 100f);
+            arrowImage.anchoredPosition -= new Vector2(0f, beatTempo * Time.deltaTime * 150f);
         }
     }
+
+    public void PlayNextSound()
+{
+    if(currentIndex < audioSources.Length)
+    {
+        // Mevcut index'deki ses durdurulur.
+        if (currentIndex > 0)
+        {
+            audioSources[currentIndex - 1].Stop();
+        }
+        
+        // Sonraki sıradaki ses çalınır ve takip edilen index arttırılır.
+        audioSources[currentIndex].Play();
+        currentIndex++;
+    }
+
+    // Index son sese ulaştıysa, son sese ulaşıldı mesajı verilir.
+    if(currentIndex == audioSources.Length)
+    {
+        Debug.Log("Son sese ulaşıldı.");
+    }
+}
 }

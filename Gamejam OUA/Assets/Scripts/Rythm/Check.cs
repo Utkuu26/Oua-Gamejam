@@ -2,15 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
+
 
 public class Check : MonoBehaviour
 {
     public bool canPressed;
     public KeyCode keyToPress;
-    public GameObject progressBar;
-    public int totalArrows;
-    public int arrowsHit;
+    public int deletedArrow;
+    public int totalArrow = 10;
+    public bool arrowDeleted = false;
 
+    public TextMeshProUGUI scoreText;
+    public BeatScroller bs;
+
+    
 
     private void OnTriggerEnter(Collider other) 
     {
@@ -28,31 +34,30 @@ public class Check : MonoBehaviour
         }    
     }
 
-    void Start()
+    void Start() 
     {
-        totalArrows = 10;
-        arrowsHit = 0;
+        //scoreText.text = "Score: " + deletedArrow + "/" + totalArrow;
     }
 
+        
     void Update()
     {
         if(Input.GetKeyDown(keyToPress))
         {
-            if(canPressed)
-            {
+           if(canPressed)
+           {
                 gameObject.SetActive(false);
-                arrowsHit++;
-                UpdateProgressBar();
-            }
+                bs.PlayNextSound();
+                arrowDeleted = true;
+                if(arrowDeleted)
+                {
+                    deletedArrow++;
+                    scoreText.text = "Score: " + deletedArrow + "/" + totalArrow;
+                    arrowDeleted = false;
+                }
+           }
+
+           
         }
     }
-
-    void UpdateProgressBar()
-    {
-        float progress = (float)arrowsHit / totalArrows;
-        progressBar.GetComponent<RectTransform>().localScale = new Vector3(progress, 1f, 1f);
-        progressBar.GetComponent<Image>().fillAmount = progress;
-        progressBar.GetComponent<Image>().color = Color.green;
-    }
-    
 }
