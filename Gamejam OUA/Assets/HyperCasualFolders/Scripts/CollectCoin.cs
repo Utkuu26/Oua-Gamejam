@@ -23,16 +23,37 @@ public class CollectCoin : MonoBehaviour
     {
         PlayerAnim = Player.GetComponentInChildren<Animator>();
         winMusic = GetComponent<AudioSource>();
-        coinSound = GetComponent<AudioSource>();
+        
     }
 
     private void OnTriggerEnter(Collider other)
     {
+        if (other.CompareTag("true"))
+        {
+            winMusic.Play();
+            score += 5;
+            CoinText.text = "Aylýk Görev:" + "%" + score.ToString();
+            görevDurumu.value = score;
+        }
+
+
+
+
+        if (other.CompareTag("finish"))
+        {
+            winMusic.Play();
+            score = 100;
+            CoinText.text = "Aylýk Görev:" + "%" + score.ToString();
+            görevDurumu.value = score;
+        }
+
+
+
         if (other.CompareTag("Coin"))
         {
             AddCoin();
             Destroy(other.gameObject);
-            other.GetComponent<AudioSource>().Play();
+            winMusic.Play();
             
         }
         else if (other.CompareTag("End"))

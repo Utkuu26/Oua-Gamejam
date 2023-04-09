@@ -8,7 +8,8 @@ TagManager:
   - Coin
   - Collison
   - End
-  - Activator
+  - true
+  - finish
   layers:
   - Default
   - TransparentFX
