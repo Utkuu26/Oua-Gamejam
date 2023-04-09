@@ -13,6 +13,7 @@ TagManager:
   - Activator
   - kututag
   - "g\xF6rsel"
+  - kutu
   layers:
   - Default
   - TransparentFX

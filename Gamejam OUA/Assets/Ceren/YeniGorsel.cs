@@ -31,7 +31,7 @@ public class YeniGorsel : MonoBehaviour
             foreach (Collider temasEdenCollider in temasEdenColliders)
             {
                 // Eğer temas eden collider bir kutuysa
-                if (temasEdenCollider.CompareTag("kutu"))
+                if (temasEdenCollider.CompareTag("kututag"))
                 {
                     // Eğer resmin adı kutunun adıyla aynıysa doğru yerde demektir
                     if (temasEdenCollider.name == name)

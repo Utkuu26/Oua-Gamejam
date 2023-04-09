@@ -6,18 +6,17 @@ using UnityEngine;
 public class Tasi : MonoBehaviour
 {
     Camera kamera;
-    Vector2 baslangic_pozisyonu;
-
-
-    GameObject[] kututag_dizisi;
+    new Vector3 baslangic_pozisyonu;
+    GameObject[] kutu_dizisi;
     yonetici yonet;
 
 
     private void OnMouseDrag()
     {
-        Vector3 pozisyon = kamera.ScreenToWorldPoint(Input.mousePosition);
-        pozisyon.z = 0;
-        transform.position = pozisyon;
+        Vector3 mousePosition = new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f);
+        Vector3 objPosition = Camera.main.ScreenToWorldPoint(mousePosition);
+        transform.position = objPosition;
+        transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     void Start()
@@ -25,7 +24,7 @@ public class Tasi : MonoBehaviour
         kamera = GameObject.Find("Main Camera").GetComponent<Camera>();
         baslangic_pozisyonu = transform.position;
 
-        kututag_dizisi = GameObject.FindGameObjectsWithTag("kututag");
+        kutu_dizisi = GameObject.FindGameObjectsWithTag("kutu");
         yonet = GameObject.Find("yonetici").GetComponent<yonetici>();
 
     }
@@ -36,15 +35,15 @@ public class Tasi : MonoBehaviour
         if (Input.GetMouseButtonUp(0))
         {
 
-            foreach (GameObject kututag in kututag_dizisi)
+            foreach (GameObject kutu in kutu_dizisi)
             {
-                if (kututag.name  == gameObject.name)
+                if (kutu.name  == gameObject.name)
                 {
-                    float mesafe = Vector3.Distance(kututag.transform.position, transform.position);
+                    float mesafe = Vector3.Distance(kutu.transform.position, transform.position);
                     {
                         if (mesafe <= 1)
                         {
-                            transform.position = kututag.transform.position;
+                            transform.position = kutu.transform.position;
                             yonet.sayi_arttir();
                             this.enabled = false;
                         }
