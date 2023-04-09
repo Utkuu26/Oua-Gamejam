@@ -12,6 +12,7 @@ public class ComputerScreenCamera : MonoBehaviour
     public GameObject canvasObject;
     public AudioSource computerSfx;
     public AudioSource btnClickSfx;
+    public PcButtonManager pc;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -33,6 +34,19 @@ public class ComputerScreenCamera : MonoBehaviour
             mainCamera.transform.rotation = Quaternion.Euler(0f, -95f, 0f);
             canvasObject.SetActive(false);
         }
+
+            if(Input.GetKeyDown(KeyCode.Z))
+            {
+                pc.LoadSceneHyperCasual();
+            }
+            if(Input.GetKeyDown(KeyCode.X))
+            {
+                pc.LoadSceneRyhtm();
+            }
+            if(Input.GetKeyDown(KeyCode.C))
+            {
+                pc.LoadScenePixelArt();
+            }
 
         float step = moveSpeed * Time.deltaTime;
         computerCamera.transform.position = Vector3.MoveTowards(computerCamera.transform.position, targetPosition, step);

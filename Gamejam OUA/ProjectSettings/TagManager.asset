@@ -10,6 +10,9 @@ TagManager:
   - End
   - true
   - finish
+  - Activator
+  - kututag
+  - "g\xF6rsel"
   layers:
   - Default
   - TransparentFX
