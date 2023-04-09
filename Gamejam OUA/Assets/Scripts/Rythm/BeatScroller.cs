@@ -1,6 +1,7 @@
 using UnityEngine.UI;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BeatScroller : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class BeatScroller : MonoBehaviour
     // Index son sese ulaştıysa, son sese ulaşıldı mesajı verilir.
     if(currentIndex == audioSources.Length)
     {
+        SceneManager.LoadScene(1);
         Debug.Log("Son sese ulaşıldı.");
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ComputerScreenCamera : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class ComputerScreenCamera : MonoBehaviour
     public float moveSpeed = 0.7f;
     public GameObject canvasObject;
     public AudioSource computerSfx;
+    public AudioSource btnClickSfx;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -17,6 +19,7 @@ public class ComputerScreenCamera : MonoBehaviour
         {
             computerCamera.gameObject.SetActive(true);
             mainCamera.gameObject.SetActive(false);
+            computerSfx.Play();
         }
     }
 
@@ -37,7 +40,18 @@ public class ComputerScreenCamera : MonoBehaviour
         if (computerCamera.transform.position == targetPosition)
         {
             canvasObject.SetActive(true);
-            computerSfx.Play();
         }
     }
+
+    public void LoadSceneRyhtm()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void LoadSceneHyperCasual()
+    {
+        SceneManager.LoadScene(2);
+    }
+
+
 }

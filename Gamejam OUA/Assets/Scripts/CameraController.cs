@@ -12,6 +12,7 @@ public class CameraController : MonoBehaviour
     public Camera computerCamera;
     public GameObject canvas;
     public AudioSource walkSfx;
+    public AudioSource yawnSfx;
 
     void Start()
     {
@@ -19,6 +20,8 @@ public class CameraController : MonoBehaviour
         transform.rotation = Quaternion.Euler(Vector3.zero);
         computerCamera.gameObject.SetActive(false);
         canvas.SetActive(false);
+        yawnSfx.Play();
+        walkSfx.Play();
     }
 
     void Update()
@@ -37,6 +40,5 @@ public class CameraController : MonoBehaviour
         Vector3 moveDirection = cameraTransform.transform.forward * zMovement + cameraTransform.transform.right * xMovement;
         moveDirection.y = 0f;
         transform.position += moveDirection;
-        walkSfx.Play();
     }
 }
