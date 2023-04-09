@@ -10,9 +10,7 @@ public class CollectCoin : MonoBehaviour
     public int score;
     public TextMeshProUGUI CoinText;
     public TextMeshProUGUI UnityText;
-    public TextMeshProUGUI GirisimcilikText;
-    public TextMeshProUGUI ProjeText;
-    public TextMeshProUGUI EnglishText;
+ 
     public PlayerController PlayerController;
     public Slider görevDurumu;
     public Animator PlayerAnim;
@@ -44,7 +42,7 @@ public class CollectCoin : MonoBehaviour
             transform.Rotate(transform.rotation.x, 180, transform.rotation.z);
             
 
-            if (görevDurumu.value <= 100)
+            if (görevDurumu.value == 100)
             {
                 Debug.Log("you win");
                 PlayerAnim.SetBool("win", true);
@@ -52,12 +50,7 @@ public class CollectCoin : MonoBehaviour
                 
                 UnityText.text = "Unity Görevleri: " + "Tamamlandi";
                 UnityText.color = Color.green;
-                GirisimcilikText.text = "Girisimcilik Egitimleri: " + "Tamamlandi";
-                GirisimcilikText.color = Color.green;
-                ProjeText.text = "Proje Yönetimi: " + "Tamamlandi";
-                ProjeText.color = Color.green;
-                EnglishText.text = "Ingilizce Egitimleri: " + "Tamamlandi";
-                EnglishText.color = Color.green;
+              
                 winMusic.Play();
 
 
@@ -67,14 +60,10 @@ public class CollectCoin : MonoBehaviour
                 
                 Debug.Log("You lose");
                 PlayerAnim.SetBool("lose", true);
-                UnityText.text = "Unity Görevleri: " + "Tamamlandi";
-                UnityText.color = Color.green;
-                GirisimcilikText.text = "Girisimcilik Egitimleri: " + "Tamamlanmadi";
-                GirisimcilikText.color = Color.red;
-                ProjeText.text = "Proje Yönetimi: " + "Tamamlanmadi";
-                ProjeText.color = Color.red;
-                EnglishText.text = "Ingilizce Egitimleri: " + "Tamamlandi";
-                EnglishText.color = Color.green;
+                UnityText.text = "Unity Görevleri: " + "Tamamlanmadi";
+                UnityText.color = Color.red;
+                
+                
             }
         }
     }
